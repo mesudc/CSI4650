@@ -8,33 +8,125 @@ const con = mysql.createConnection({
 });
 
 //Create database if not exists 'mydb'
+function dbCreate(){
+    con.query('CREATE DATABASE IF NOT EXISTS mydb', (error, results) => {
+        if (error) {
+            console.error(error);
+        } else {
+            console.log('Database created successfully!');
+        }
+        }
+    );
+}
 
-con.query('CREATE DATABASE IF NOT EXISTS mydb', (error, results) => {
-    if (error) {
-        console.error(error);
-    } else {
-        console.log('Database created successfully!');
-    }
-    }
-);
 
 //Create table if not exists 'polls' with Id, name, age, university, major, gpa
-con.query('CREATE TABLE IF NOT EXISTS mydb.polls (Id INT NOT NULL AUTO_INCREMENT, name VARCHAR(255) NOT NULL, age INT NOT NULL, university VARCHAR(255) NOT NULL, major VARCHAR(255) NOT NULL, gpa FLOAT NOT NULL, PRIMARY KEY (Id))', (error, results) => {
-    if (error) {
-        console.error(error);
-    } else {
-        console.log('Table created successfully!');
-    }
-    }
-);
+//Uncomment function below function to create table
+//createTable();
+function createTable() {
+    con.query('CREATE TABLE IF NOT EXISTS mydb.polls (Id INT NOT NULL AUTO_INCREMENT, name VARCHAR(255) NOT NULL, surname VARCHAR(255) NOT NULL, age INT NOT NULL, university VARCHAR(255) NOT NULL, major VARCHAR(255) NOT NULL, gpa FLOAT NOT NULL, PRIMARY KEY (Id))', (error, results) => {
+        if (error) {
+            console.error(error);
+        } else {
+            console.log('Table created successfully!');
+        }
+        }
+    );
+}
 
-// connect to the MySQL database
-con.connect((error) => {
-  if (error) {
-    console.error('Error connecting to MySQL database:', error);
-  } else {
-    console.log('Connected to MySQL database!');
-  }
-});
-// close the MySQL connection
-con.end();
+//Connect to database 'mydb'
+function dbConnection(){
+    con.connect((error) => {
+        if (error) {
+        console.error('Error connecting to MySQL database:', error);
+        } else {
+        console.log('Connected to MySQL database!');
+        }
+    });
+}
+
+//Inserts data into table 'polls'
+//dbInsert('John', 'Doe', 20, 'University of Toronto', 'Computer Science', 3.5)
+function dbInsert(name, surname, age, university, major, gpa) {
+    const sql = `INSERT INTO mydb.polls (name, surname, age, university, major, gpa) VALUES (?, ?, ?, ?, ?, ?)`;
+    const values = [name, surname, age, university, major, gpa];
+
+    con.query(sql, values, (error, results) => {
+        if (error) {
+            console.error(error);
+        } else {
+            console.log('Data to be inserted: ', values);
+            console.log('Data inserted successfully!');
+        }
+    });
+}
+
+//Get total number of rows in table 'polls'
+function dbGetTotal() {
+    return new Promise((resolve, reject) => {
+        const sql = `SELECT COUNT(*) AS total_rows FROM mydb.polls`;
+
+        con.query(sql, (error, results) => {
+            if(error){
+                console.error(error);
+                reject(error);
+            } else {
+                console.log('Total rows:', results[0].total_rows);
+                resolve(results);
+            }   
+        });
+    });
+}
+
+
+
+//Selects data from table 'polls'
+//Returns the average of each column in the 'polls' table
+function dbGetAverages() {
+    return new Promise((resolve, reject) => {
+        const sql = `SELECT AVG(age) AS avg_age, AVG(gpa) AS avg_gpa FROM mydb.polls`;
+
+        con.query(sql, (error, results) => {
+            if (error) {
+                console.error(error);
+                reject(error);
+            } else {
+                console.log('Average age:', results[0].avg_age);
+                console.log('Average GPA:', results[0].avg_gpa);
+                resolve(results);
+            }
+        });
+    });
+}
+
+//Removes data from table 'polls' with Id
+function dbRemove(id) {
+    const sql = `DELETE FROM mydb.polls WHERE Id = ?`;
+    const values = [id];
+
+    con.query(sql, values, (error, results) => {
+        if (error) {
+            console.error(error);
+        } else {
+            console.log('Data to be removed: ', values);
+            console.log('Data removed successfully!');
+        }
+    });
+}
+
+
+//Ends db connection
+function dbEndConnection(){
+    con.end();
+}
+
+exports = module.exports = {
+    dbCreate,
+    createTable,
+    dbConnection,
+    dbInsert,
+    dbGetAverages,
+    dbRemove,
+    dbEndConnection,
+    dbGetTotal
+};

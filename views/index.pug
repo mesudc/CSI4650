@@ -1,5 +1,25 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+
+  div(class="container-fluid justify-content-center align-items-center col-md-12")
+    form(method="POST" action='/poll' class='form col-md-6 mt-5 offset-md-3 justify-content-center align-items-center')
+      div(class="form-group mt-2")
+        label(for="name") Name:
+        input#name.form-control(type="text" name="name" required)
+      div(class="form-group mt-2")
+        label(for="surname") Surname:
+        input#surname.form-control(type="text" name="surname" required)
+      div(class="form-group mt-2")
+        label(for="age") Age:
+        input#age.form-control(type="number" name="age" required)
+      div(class="form-group mt-2")
+        label(for="university") University:
+        input#university.form-control(type="text" name="university" required)
+      div(class="form-group mt-2")
+        label(for="major") Major:
+        input#major.form-control(type="text" name="major" required)
+      div(class="form-group mt-2")
+        label(for="gpa") GPA:
+        input#gpa.form-control(type="number" name="gpa" step="0.01" min="0" max="4" required)
+      button(class="btn btn-primary mt-2" type="submit") Submit
