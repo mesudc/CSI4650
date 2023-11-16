@@ -35,7 +35,7 @@ function createTable() {
 }
 
 //Connect to database 'mydb'
-function dbConnection(){
+function Connect(){
     con.connect((error) => {
         if (error) {
         console.error('Error connecting to MySQL database:', error);
@@ -116,17 +116,17 @@ function dbRemove(id) {
 
 
 //Ends db connection
-function dbEndConnection(){
+function Close(){
     con.end();
 }
 
 exports = module.exports = {
-    dbCreate,
-    createTable,
-    dbConnection,
-    dbInsert,
-    dbGetAverages,
-    dbRemove,
-    dbEndConnection,
-    dbGetTotal
+    dbCreate, //Creates the database
+    createTable, //Creates the table "polls" within the database
+    Connect, //Connects to the database
+    dbInsert, //Runs a mysql query to the database to insert data from the polls
+    dbGetAverages, //Gets the averages of gpa and age from the polls
+    dbRemove, //Removes data from the "polls" table
+    Close, //Closes the connection to the database
+    dbGetTotal //Gets the total number of rows in the "polls" table
 };
