@@ -8,6 +8,9 @@ const con = mysql.createConnection({
 });
 
 //Create database if not exists 'mydb'
+//Uncomment to create database locally on your machine
+//dbCreate(); 
+
 function dbCreate(){
     con.query('CREATE DATABASE IF NOT EXISTS mydb', (error, results) => {
         if (error) {
@@ -22,7 +25,7 @@ function dbCreate(){
 
 //Create table if not exists 'polls' with Id, name, age, university, major, gpa
 //Uncomment function below function to create table
-//createTable();
+// createTable();
 function createTable() {
     con.query('CREATE TABLE IF NOT EXISTS mydb.polls (Id INT NOT NULL AUTO_INCREMENT, name VARCHAR(255) NOT NULL, surname VARCHAR(255) NOT NULL, age INT NOT NULL, university VARCHAR(255) NOT NULL, major VARCHAR(255) NOT NULL, gpa FLOAT NOT NULL, PRIMARY KEY (Id))', (error, results) => {
         if (error) {
@@ -47,7 +50,10 @@ function Connect(){
 
 //Inserts data into table 'polls'
 //dbInsert('John', 'Doe', 20, 'University of Toronto', 'Computer Science', 3.5)
+
+
 function dbInsert(name, surname, age, university, major, gpa) {
+    
     const sql = `INSERT INTO mydb.polls (name, surname, age, university, major, gpa) VALUES (?, ?, ?, ?, ?, ?)`;
     const values = [name, surname, age, university, major, gpa];
 
@@ -62,7 +68,7 @@ function dbInsert(name, surname, age, university, major, gpa) {
 }
 
 //Get total number of rows in table 'polls'
-function dbGetTotal() {
+async function dbGetTotal() {
     return new Promise((resolve, reject) => {
         const sql = `SELECT COUNT(*) AS total_rows FROM mydb.polls`;
 
