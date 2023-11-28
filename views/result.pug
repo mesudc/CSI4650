@@ -1,8 +1,41 @@
 extends layout
 
 block content 
-    div
-        h1= title
-        h2= "Total: " + total
-        h2= "Average age: " + age 
-        h2= "Average gpa: " + gpa
+    div(class = "container-fluid d-flex flex-column align-items-center justify-content-center")
+            h1= title
+            h2= "Submission Count: " + total
+            h2= "Average Age: " + age 
+            h2= "Average GPA: " + gpa
+            h2= "Most Popular University: " + uni.university + " (" + uni.uni + ")"
+            h2= "Most Popular Major: " + major.major + " (" + major.maj + ")"
+
+
+    div(class="container-fluid justify-content-center align-items-center col-md-12 mt-5")
+        div(class="row border-bottom")
+            div(class="col-sm justify-content-center")
+                p Name
+            div(class="col-sm justify-content-center")
+                p Surname
+            div(class="col-sm")
+                p Age
+            div(class="col-sm")
+                p University
+            div(class="col-sm")
+                p Major
+            div(class="col-sm")
+                p GPA
+    div(class="container-fluid justify-content-center align-items-center col-md-12")
+        each row in all 
+            div(class="row border-bottom")
+                div(class="col-sm justify-content-center")
+                    p= row.name
+                div(class="col-sm justify-content-center")
+                    p= row.surname
+                div(class="col-sm")
+                    p= row.age
+                div(class="col-sm")
+                    p= row.university
+                div(class="col-sm")
+                    p= row.major
+                div(class="col-sm")
+                    p= row.gpa

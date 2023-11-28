@@ -99,6 +99,58 @@ function dbGetAverages() {
     });
 }
 
+
+function dbGetAll() {
+    return new Promise((resolve, reject) => {
+        const sql = `SELECT * FROM mydb.polls`;
+
+        con.query(sql, (error, results) => {
+            if (error) {
+                console.error(error);
+                reject(error);
+            } else {
+                console.log('Average age:', results[0].avg_age);
+                console.log('Average GPA:', results[0].avg_gpa);
+                resolve(results);
+            }
+        });
+    });
+}
+
+function dbGetUni() {
+    return new Promise((resolve, reject) => {
+        const sql = `SELECT university, COUNT(DISTINCT Id) AS uni FROM mydb.polls GROUP BY university ORDER BY uni DESC`;
+
+        con.query(sql, (error, results) => {
+            if (error) {
+                console.error(error);
+                reject(error);
+            } else {
+                console.log('Average age:', results[0].avg_age);
+                console.log('Average GPA:', results[0].avg_gpa);
+                resolve(results);
+            }
+        });
+    });
+}
+
+function dbGetMajor() {
+    return new Promise((resolve, reject) => {
+        const sql = `SELECT major, COUNT(DISTINCT Id) AS maj FROM mydb.polls GROUP BY major ORDER BY maj DESC`;
+
+        con.query(sql, (error, results) => {
+            if (error) {
+                console.error(error);
+                reject(error);
+            } else {
+                console.log('Average age:', results[0].avg_age);
+                console.log('Average GPA:', results[0].avg_gpa);
+                resolve(results);
+            }
+        });
+    });
+}
+
 //Removes data from table 'polls' with Id
 function dbRemove(id) {
     const sql = `DELETE FROM mydb.polls WHERE Id = ?`;
@@ -128,5 +180,8 @@ exports = module.exports = {
     dbGetAverages, //Gets the averages of gpa and age from the polls
     dbRemove, //Removes data from the "polls" table
     Close, //Closes the connection to the database
-    dbGetTotal //Gets the total number of rows in the "polls" table
+    dbGetTotal, //Gets the total number of rows in the "polls" table
+    dbGetAll,
+    dbGetUni,
+    dbGetMajor
 };
