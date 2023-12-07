@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var resultRouter = require('./routes/result');
+var pollRouter = require('./routes/poll');
 
 var db = require('./public/javascripts/db.js');
 
@@ -27,14 +28,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/result', resultRouter);
-
+app.use('/poll', pollRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// error handler
+// Starts the applications at the default port | 3000
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;

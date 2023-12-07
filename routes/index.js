@@ -4,7 +4,7 @@ var db = require('../public/javascripts/db.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Home' });
+  res.redirect('/poll');
 });
 
 //Get Post request

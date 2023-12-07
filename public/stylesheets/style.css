@@ -12,3 +12,11 @@ a {
   color: #0088cc;
   text-decoration: none;
 }
+.logo{
+  font-size: 3em;
+  display: block;
+}
+
+.hidden {
+  display: none;
+}

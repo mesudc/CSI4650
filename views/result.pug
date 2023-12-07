@@ -1,41 +1,37 @@
 extends layout
 
-block content 
-    div(class = "container-fluid d-flex flex-column align-items-center justify-content-center")
-            h1= title
-            h2= "Submission Count: " + total
-            h2= "Average Age: " + age 
-            h2= "Average GPA: " + gpa
-            h2= "Most Popular University: " + uni.university + " (" + uni.uni + ")"
-            h2= "Most Popular Major: " + major.major + " (" + major.maj + ")"
+block content
 
+    if successMessage
+        div(class="container-fluid d-flex flex-column align-items-center justify-content-center mt-5")
+            h2 Success!
+            p= successMessage
 
-    div(class="container-fluid justify-content-center align-items-center col-md-12 mt-5")
-        div(class="row border-bottom")
-            div(class="col-sm justify-content-center")
-                p Name
-            div(class="col-sm justify-content-center")
-                p Surname
-            div(class="col-sm")
-                p Age
-            div(class="col-sm")
-                p University
-            div(class="col-sm")
-                p Major
-            div(class="col-sm")
-                p GPA
-    div(class="container-fluid justify-content-center align-items-center col-md-12")
-        each row in all 
-            div(class="row border-bottom")
-                div(class="col-sm justify-content-center")
-                    p= row.name
-                div(class="col-sm justify-content-center")
-                    p= row.surname
-                div(class="col-sm")
-                    p= row.age
-                div(class="col-sm")
-                    p= row.university
-                div(class="col-sm")
-                    p= row.major
-                div(class="col-sm")
-                    p= row.gpa
+    if addedResults
+        div(class="container-fluid d-flex flex-column align-items-center justify-content-center mt-5")
+            h2 Added Results
+            - const parsedResults = JSON.parse(addedResults)
+            table.table.table-bordered.table-striped
+                tr
+                    th InPerson
+                    th Hyflex
+                    th Online
+                tr
+                    td= parsedResults.inPerson
+                    td= parsedResults.hyflex
+                    td= parsedResults.online
+
+    div(class="container-fluid d-flex flex-column align-items-center justify-content-center mt-5")
+        h2 All poll results
+        table.table.table-bordered.table-striped
+            tr
+                th InPerson
+                th Hyflex
+                th Online
+            each result in results
+                tr
+                    td= result.inPerson
+                    td= result.hyflex
+                    td= result.online
+
+    

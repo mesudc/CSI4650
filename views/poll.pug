@@ -3,102 +3,102 @@ extends layout
 block content
 
     div.container-fluid.d-flex.justify-content-center.align-items-center.mt-5
-        button.btn.btn-primary(type="button", id="surveyBtn") Take Survey
+        button(class="btn btn-primary" type="button", id="surveyBtn") Take Survey
 
     
-    div.poll.m-5#surveyContainer
+    div(class="poll mt-5" id="surveyContainer" style="display: none;")
         form(action="/poll", method="POST")
-        table.table.table-bordered.table-striped
-            thead
-            tr
-                th
-                th.col-1.text-center Strongly Disagree
-                th.col-1.text-center
-                th.col-1.text-center
-                th.col-1.text-center
-                th.col-1.text-center
-                th.col-1.text-center Neutral
-                th.col-1.text-center
-                th.col-1.text-center
-                th.col-1.text-center
-                th.col-1.text-center
-                th.col-1.text-center Strongly Agree
+            table.table.table-bordered.table-striped
+                thead
+                tr
+                    th
+                    th.col-1.text-center Strongly Disagree
+                    th.col-1.text-center
+                    th.col-1.text-center
+                    th.col-1.text-center
+                    th.col-1.text-center
+                    th.col-1.text-center Neutral
+                    th.col-1.text-center
+                    th.col-1.text-center
+                    th.col-1.text-center
+                    th.col-1.text-center
+                    th.col-1.text-center Strongly Agree
 
-            tbody
-            tr
-                td How much do you like in-person classes?
-                td.text-center
-                    input(type="radio", name="inPerson", value="0")
-                td.text-center
-                    input(type="radio", name="inPerson", value="1")
-                td.text-center
-                    input(type="radio", name="inPerson", value="2")
-                td.text-center
-                    input(type="radio", name="inPerson", value="3")
-                td.text-center
-                    input(type="radio", name="inPerson", value="4")
-                td.text-center
-                    input(type="radio", name="inPerson", value="5")
-                td.text-center
-                    input(type="radio", name="inPerson", value="6")
-                td.text-center
-                    input(type="radio", name="inPerson", value="7")
-                td.text-center
-                    input(type="radio", name="inPerson", value="8")
-                td.text-center
-                    input(type="radio", name="inPerson", value="9")
-                td.text-center
-                    input(type="radio", name="inPerson", value="10")
+                tbody
+                tr
+                    td How much do you like in-person classes?
+                    td.text-center
+                        input(type="radio", name="inPerson", value="0")
+                    td.text-center
+                        input(type="radio", name="inPerson", value="1")
+                    td.text-center
+                        input(type="radio", name="inPerson", value="2")
+                    td.text-center
+                        input(type="radio", name="inPerson", value="3")
+                    td.text-center
+                        input(type="radio", name="inPerson", value="4")
+                    td.text-center
+                        input(type="radio", name="inPerson", value="5")
+                    td.text-center
+                        input(type="radio", name="inPerson", value="6")
+                    td.text-center
+                        input(type="radio", name="inPerson", value="7")
+                    td.text-center
+                        input(type="radio", name="inPerson", value="8")
+                    td.text-center
+                        input(type="radio", name="inPerson", value="9")
+                    td.text-center
+                        input(type="radio", name="inPerson", value="10")
 
-            tr
-                td How much do you like hyflex classes?
-                td.text-center
-                    input(type="radio", name="hyflex", value="0")
-                td.text-center
-                    input(type="radio", name="hyflex", value="1")
-                td.text-center
-                    input(type="radio", name="hyflex", value="2")
-                td.text-center
-                    input(type="radio", name="hyflex", value="3")
-                td.text-center
-                    input(type="radio", name="hyflex", value="4")
-                td.text-center
-                    input(type="radio", name="hyflex", value="5")
-                td.text-center
-                    input(type="radio", name="hyflex", value="6")
-                td.text-center
-                    input(type="radio", name="hyflex", value="7")
-                td.text-center
-                    input(type="radio", name="hyflex", value="8")
-                td.text-center
-                    input(type="radio", name="hyflex", value="9")
-                td.text-center
-                    input(type="radio", name="hyflex", value="10")
+                tr
+                    td How much do you like hyflex classes?
+                    td.text-center
+                        input(type="radio", name="hyflex", value="0")
+                    td.text-center
+                        input(type="radio", name="hyflex", value="1")
+                    td.text-center
+                        input(type="radio", name="hyflex", value="2")
+                    td.text-center
+                        input(type="radio", name="hyflex", value="3")
+                    td.text-center
+                        input(type="radio", name="hyflex", value="4")
+                    td.text-center
+                        input(type="radio", name="hyflex", value="5")
+                    td.text-center
+                        input(type="radio", name="hyflex", value="6")
+                    td.text-center
+                        input(type="radio", name="hyflex", value="7")
+                    td.text-center
+                        input(type="radio", name="hyflex", value="8")
+                    td.text-center
+                        input(type="radio", name="hyflex", value="9")
+                    td.text-center
+                        input(type="radio", name="hyflex", value="10")
 
-            tr
-                td How much do you like fully online classes?
-                td.text-center
-                    input(type="radio", name="online", value="0")
-                td.text-center
-                    input(type="radio", name="online", value="1")
-                td.text-center
-                    input(type="radio", name="online", value="2")
-                td.text-center
-                    input(type="radio", name="online", value="3")
-                td.text-center
-                    input(type="radio", name="online", value="4")
-                td.text-center
-                    input(type="radio", name="online", value="5")
-                td.text-center
-                    input(type="radio", name="online", value="6")
-                td.text-center
-                    input(type="radio", name="online", value="7")
-                td.text-center
-                    input(type="radio", name="online", value="8")
-                td.text-center
-                    input(type="radio", name="online", value="9")
-                td.text-center
-                    input(type="radio", name="online", value="10")
+                tr
+                    td How much do you like fully online classes?
+                    td.text-center
+                        input(type="radio", name="online", value="0")
+                    td.text-center
+                        input(type="radio", name="online", value="1")
+                    td.text-center
+                        input(type="radio", name="online", value="2")
+                    td.text-center
+                        input(type="radio", name="online", value="3")
+                    td.text-center
+                        input(type="radio", name="online", value="4")
+                    td.text-center
+                        input(type="radio", name="online", value="5")
+                    td.text-center
+                        input(type="radio", name="online", value="6")
+                    td.text-center
+                        input(type="radio", name="online", value="7")
+                    td.text-center
+                        input(type="radio", name="online", value="8")
+                    td.text-center
+                        input(type="radio", name="online", value="9")
+                    td.text-center
+                        input(type="radio", name="online", value="10")
 
-        .text-center
-            input.btn.btn-primary(type="submit", value="Submit")
+            .text-center
+                input.btn.btn-primary(type="submit", value="Submit")
