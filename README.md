@@ -1,8 +1,8 @@
 # Instructions for running the application
 
 ## 1. Requirements
-- Install NPM and [Node.js](https://nodejs.org/en/download/current).
-- Install [Xampp](https://www.apachefriends.org/download.html).
+- Install NPM and [Node.js](https://nodejs.org/en/download/current) as administrator.
+- Install [Xampp](https://www.apachefriends.org/download.html) as administrator.
 - Command Line or Text Editor ([VSCode](https://code.visualstudio.com/docs/setup/windows) and [Git](https://git-scm.com/downloads) used for the project.)
 - (Optional) Install MySql Workbench to view local database [here](https://dev.mysql.com/downloads/workbench/).
 
